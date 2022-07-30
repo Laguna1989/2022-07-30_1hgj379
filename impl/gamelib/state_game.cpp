@@ -30,6 +30,12 @@ void StateGame::doInternalCreate()
     m_background->setIgnoreCamMovement(true);
     m_background->update(0.0f);
 
+    for (auto i = 0; i != 100; ++i) {
+        auto s = std::make_shared<Star>();
+        m_stars.push_back(s);
+        add(s);
+    }
+
     m_earthPosition = jt::Vector2f { 300.0f, 200.0f };
     m_earth = std::make_shared<jt::Shape>();
     float const earthradius = 24.0f;
@@ -93,6 +99,10 @@ void StateGame::doInternalUpdate(float const elapsed)
     m_shots->update(elapsed);
     updateForces();
 
+    for (auto& s : m_stars) {
+        s->update(elapsed);
+    }
+
     m_background->update(elapsed);
 
     m_earth->update(elapsed);
@@ -142,8 +152,8 @@ void StateGame::spawnShot(float elapsed)
         auto shot = std::make_shared<Shot>();
         shot->pos = m_earthPosition + emp * 24;
 
-        float const velocity = 15.0f;
-        shot->vel = emp * ((m_pressedCounter + 0.5f) * velocity);
+        float const velocity = 12.0f;
+        shot->vel = emp * ((m_pressedCounter + 0.3f) * velocity);
         m_shots->push_back(shot);
         add(shot);
 
@@ -166,6 +176,10 @@ void StateGame::doInternalDraw() const
 {
     m_background->draw(getGame()->gfx().target());
     //    drawObjects();
+
+    for (auto& s : m_stars) {
+        s->draw();
+    }
 
     for (auto& s : *m_shots) {
         auto shot = s.lock();

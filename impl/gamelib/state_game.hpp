@@ -5,6 +5,7 @@
 #include "object_group.hpp"
 #include "particle_system.hpp"
 #include "shot.hpp"
+#include "star.hpp"
 #include "text.hpp"
 #include "vector.hpp"
 #include <box2dwrapper/box2d_world_interface.hpp>
@@ -50,6 +51,8 @@ private:
     std::shared_ptr<jt::ParticleSystem<jt::Shape, 1000>> m_particleSystem;
 
     std::shared_ptr<jt::Bar> m_bar;
+
+    std::vector<std::shared_ptr<Star>> m_stars;
 
     void doInternalCreate() override;
     void doInternalUpdate(float const elapsed) override;

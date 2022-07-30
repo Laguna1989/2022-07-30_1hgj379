@@ -22,6 +22,13 @@
 
 void StateMenu::doInternalCreate()
 {
+
+    for (auto i = 0; i != 100; ++i) {
+        auto s = std::make_shared<Star>();
+        m_stars.push_back(s);
+        add(s);
+    }
+
     createMenuText();
     createShapes();
     createVignette();
@@ -167,6 +174,7 @@ void StateMenu::createTweenCreditsPosition()
 
 void StateMenu::doInternalUpdate(float const elapsed)
 {
+
     updateDrawables(elapsed);
     checkForTransitionToStateGame();
     jt::Vector2f const& axis = getGame()->input().gamepad(0)->getAxis(jt::GamepadAxisCode::ARight);
@@ -175,6 +183,11 @@ void StateMenu::doInternalUpdate(float const elapsed)
 void StateMenu::updateDrawables(const float& elapsed)
 {
     m_background->update(elapsed);
+
+    for (auto& s : m_stars) {
+        s->update(elapsed);
+    }
+
     m_text_Title->update(elapsed);
     m_text_Explanation->update(elapsed);
     m_text_Credits->update(elapsed);
@@ -205,6 +218,10 @@ void StateMenu::startTransitionToStateGame()
 void StateMenu::doInternalDraw() const
 {
     m_background->draw(getGame()->gfx().target());
+
+    for (auto& s : m_stars) {
+        s->draw();
+    }
 
     m_text_Title->draw(getGame()->gfx().target());
     m_text_Explanation->draw(getGame()->gfx().target());

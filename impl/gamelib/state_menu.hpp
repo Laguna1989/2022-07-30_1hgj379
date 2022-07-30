@@ -1,6 +1,7 @@
 ﻿#ifndef GAME_STATE_MENU_HPP
 #define GAME_STATE_MENU_HPP
 
+#include "star.hpp"
 #include <game_state.hpp>
 
 namespace jt {
@@ -29,6 +30,8 @@ private:
 
     std::shared_ptr<jt::Shape> m_overlay;
     std::shared_ptr<jt::Vignette> m_vignette;
+
+    std::vector<std::shared_ptr<Star>> m_stars;
 
     bool m_started { false };
 
