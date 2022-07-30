@@ -80,10 +80,12 @@ void StateMenu::createTextCredits()
 void StateMenu::createTextExplanation()
 {
     float half_width = GP::GetScreenSize().x / 2;
-    m_text_Explanation = jt::dh::createText(
-        getGame()->gfx().target(), "Press Space to start the game", 16U, GP::PaletteFontFront());
+    m_text_Explanation = jt::dh::createText(getGame()->gfx().target(),
+        "Aim with the mouse, longer press => faster shot\nShots in Last attempt: "
+            + std::to_string(m_highscore) + "\nPress Space to start the game",
+        16U, GP::PaletteFontFront());
     m_text_Explanation->setPosition({ half_width, 150 });
-    m_text_Explanation->setShadow(GP::PaletteFontShadow(), jt::Vector2f { 3, 3 });
+    m_text_Explanation->setShadow(GP::PaletteFontShadow(), jt::Vector2f { 2, 2 });
 }
 
 void StateMenu::createTextTitle()
@@ -92,7 +94,7 @@ void StateMenu::createTextTitle()
     m_text_Title = jt::dh::createText(
         getGame()->gfx().target(), GP::GameName(), 32U, GP::PaletteFontFront());
     m_text_Title->setPosition({ half_width, 20 });
-    m_text_Title->setShadow(GP::PaletteFontShadow(), jt::Vector2f { 3, 3 });
+    m_text_Title->setShadow(GP::PaletteFontShadow(), jt::Vector2f { 2, 2 });
 }
 
 void StateMenu::createTweens()
@@ -100,7 +102,7 @@ void StateMenu::createTweens()
     createTweenOverlayAlpha();
     createTweenTitleAlpha();
     createTweenCreditsPosition();
-    createTweenExplanationScale();
+    //    createTweenExplanationScale();
 }
 
 void StateMenu::createInstructionTweenScaleUp()
