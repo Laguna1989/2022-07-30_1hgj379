@@ -1,4 +1,4 @@
-# JamTemplateCpp
+ # JamTemplateCpp
 
 [![Build Status](https://github.com/Laguna1989/JamTemplateCpp/actions/workflows/test_verification.yml/badge.svg)](https://github.com/Laguna1989/JamTemplateCpp/actions/workflows/unittests.yml)
 [![codecov](https://codecov.io/github/Laguna1989/JamTemplateCpp/branch/master/graph/badge.svg?token=9XBS3E6UWC)](https://codecov.io/github/Laguna1989/JamTemplateCpp)
